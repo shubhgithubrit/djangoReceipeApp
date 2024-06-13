@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block start %}
+<div class="container-md mt-5">
+    <form class="col-6 mx-auto card p3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" method="post"
+        enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Login User</h2>
+        {% if messages %}
+        <div class="alert alert-success" role="alert">
+
+
+
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+
+
+        </div>
+        {% endif %}
+        <div class="mb-3">
+            <label for="userLogin" class="form-label">Username</label>
+            <input type="text" class="form-control" name="user_name">
+        </div>
+        <div class="mb-3">
+            <label for="userPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" name="user_password">
+        </div>
+        <p>Don't Have an account <a href="/register/">register</a></p>
+        <button type="submit" class="btn btn-success">Login</button>
+    </form>
+</div>
+{% endblock %}

@@ -23,11 +23,15 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path("",home,name="home"),
-    path("success_page/",success,name="success"),
+    # path("success_page/",success,name="success"),
     path('admin/', admin.site.urls),
+    path("login/",login_page,name="login_page"),
+    path("register/",register_page,name="register_page"),
     path("receipe/",receipes,name="receipes"),
     path("delete_receipe/<id>/",delete_receipe, name="delete_receipe"),
-    path("update_receipe/<id>",update_receipe, name="update_receipe")
+    path("update_receipe/<id>",update_receipe, name="update_receipe"),
+    path("logout/",logout_page,name="logout_page")
+    
 ]
 
 if settings.DEBUG:
