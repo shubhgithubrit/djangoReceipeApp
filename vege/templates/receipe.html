@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block start  %}
+<div class="container-md mt-5">
+    <form class="col-6 mx-auto card p3 shadow-lg p-3 mb-5 bg-body-tertiary rounded" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h2>Add Receipe</h2>
+        <div class="mb-3">
+          <label for="receipeName" class="form-label">Receipe Name</label>
+          <input type="text" class="form-control" name=" receipe_name">    
+        </div>
+        <div class="mb-3">
+          <label for="receipeDescription" class="form-label">Receipe Description</label>
+          <textarea class="form-control" name="receipe_description"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="receipeImage" class="form-label">Receipe Image</label>
+            <input type="file" class="form-control" name="receipe_image">    
+          </div>
+        <button type="submit" class="btn btn-success">Add Receipe</button>
+      </form>
+      <hr>
+    <div class="mt-5">
+      <form method="get">
+      <div class="mb-3">
+        <label for="receipeSearch" class="form-label">Search Receipe</label>
+        <input name="search" type="text" class="form-control">    
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    </div>    
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Receipe Name</th>
+            <th scope="col">Receipe Description</th>
+            <th scope="col">Receipe Image</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for receipe in receipes  %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{receipe.receipe_name}}</td>
+            <td>{{receipe.receipe_description}}</td>
+            <td> <img src="/media/{{receipe.receipe_image}}" alt="receipe" style="height: 100px; object-fit:cover" ></td>
+            <td><a href="/delete_receipe/{{receipe.id}}" class="btn btn-danger mt-3">Delete</a>
+              <a href="/update_receipe/{{receipe.id}}" class="btn btn-success mt-3">Update</a>
+            </td>
+          </tr>
+          {% endfor %}
+        
+        </tbody>
+      </table>
+        
+</div>
+{% endblock  %}
+
